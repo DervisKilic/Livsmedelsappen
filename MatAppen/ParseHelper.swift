@@ -9,10 +9,8 @@
 import Foundation
 
 class ParseHelper {
-    
-    var id = 0
 
-    func parseJson(searchWord: String, tableViewController: MainTableViewController) {
+    func parseJson(searchWord: String, data: @escaping ([Food]) -> Void){
         
         let urlString = "http://www.matapi.se/foodstuff?query=\(searchWord)"
         
@@ -33,11 +31,10 @@ class ParseHelper {
                                 let id = item["number"] as! Int
                                 let name = item["name"] as! String
 
+                                foods.append(Food(name: name, id: id))
 
-                                foods.append(Food(name: name, id: id))                                
                             }
-                            tableViewController.data = foods
-                            tableViewController.tableView.reloadData()
+                            data(foods)
                             
                         } else {
                             NSLog("Failed to cast from json.")
@@ -58,10 +55,9 @@ class ParseHelper {
         
     }
     
-    func parseJsonKcal(id: Int){
+    func parseJsonKcal(id: Int, data: @escaping (Double) -> Void){
         
-        let urlString = "http://www.matapi.se/foodstuff/\(id)?nutrient="
-        
+        let urlString = "http://www.matapi.se/foodstuff/\(id)"
         if let safeUrlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
             let url = URL(string: safeUrlString) {
             
@@ -71,16 +67,22 @@ class ParseHelper {
                 if let actualData = maybeData {
                     let jsonOptions = JSONSerialization.ReadingOptions()
                     do {
-                        if let parsed = try JSONSerialization.jsonObject(with: actualData, options: jsonOptions) as? [[String:Any]] {
+                        if let parsed = try JSONSerialization.jsonObject(with: actualData, options: jsonOptions) as? [String:Any] {
+                            
+                            
+                            let item = parsed["nutrientValues"] as! [String:Any]
+                            let kcal = item["energyKcal"] as! Double
+                            let protein = item["protein"] as! Double
+                            let fat = item["fat"] as! Double
+                            let carbs = item["carbohydrates"] as! Double
                             
                             
                             
-                            for item in parsed {
-                                
-                                let kcal = item["energyKcal"] as! Double
-                            }
-                        
-                        
+                            data(kcal)
+                            data(protein)
+                            data(fat)
+                            data(carbs)
+                            
                         } else {
                             NSLog("Failed to cast from json.")
                         }

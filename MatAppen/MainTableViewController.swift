@@ -19,6 +19,7 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         definesPresentationContext = true
         
         searchController = UISearchController(searchResultsController: nil)
@@ -26,19 +27,27 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
         searchController.dimsBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
         
+        
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        
+
         if let searchText = searchController.searchBar.text?.lowercased() {
             
-            if searchText.characters.count > 2{
-            
+            if searchText.characters.count > 2 {
             data = data.filter { $0.name.lowercased().contains(searchText) }
-            p1.parseJson(searchWord: searchText, tableViewController: self)
+                p1.parseJson(searchWord: searchText) {
+                    self.data = $0
+                    for food in self.data {
+                        self.p1.parseJsonKcal(id: food.id) {
+                            food.kcal = $0
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
+                }
             }
-
-
         } else {
             data = []
         }
@@ -84,9 +93,10 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if let cell = sender as? CustomTableViewCell {
-            segue.destination.title = cell.name.text
+            let detailView = segue.destination as! detailedViewController
+            
+            detailView.label = cell.name.text!
         }
     }
 
