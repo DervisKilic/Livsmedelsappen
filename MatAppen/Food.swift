@@ -19,7 +19,7 @@ class Food {
     var carbs: Double
     var favs = [String:Any]()
     var favArray: [Dictionary<String,Any>] = []
-    var On = false
+    let defaults = UserDefaults.standard
 
     
     init(name: String = "", id: Int = 0, kcal: Double = 0.0,protein: Double = 0.0, fat: Double = 0.0, carbs: Double = 0.0) {
@@ -31,24 +31,26 @@ class Food {
         self.carbs = carbs
     }
     func isFavorite(name: String, id: Int, kcal: Double,protein: Double, fat: Double, carbs: Double, isFav: Bool) {
-        
+        if let favorites = defaults.array(forKey: "favorites"){
+            favArray = favorites as! [Dictionary<String, Any>]
         
         if isFav{
-            let defaults = UserDefaults.standard
-            if let favorites = defaults.array(forKey: "favorites"){
+            
                 
-                favArray = favorites as! [Dictionary<String, Any>]
+            
                 
                 favs = ["name":name,"id":id,"kcal":kcal,"protein":protein, "fat": fat, "carbs":carbs]
                 favArray.append(favs)
-                
-            }
-            
+
         }else{
-        
-            let index = favArray.index(where: { $0["id"] == id.description}){
-                
-            }
+            
+                favArray = favArray.filter { ($0["id"] as! Int) != (id)}
+                print(favArray.count)
+            
+            
+        }
+        UserDefaults.standard.set(favArray, forKey: "favorites")
+        UserDefaults.standard.synchronize()
         }
     }
 }
