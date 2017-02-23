@@ -16,6 +16,7 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var data: [Food] = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -80,24 +81,36 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
             cell.name.text = data[indexPath.row].name
             cell.number.text = String(data[indexPath.row].id)
             cell.kcal.text = String(data[indexPath.row].kcal)
+            
         } else {
             cell.name.text = data[indexPath.row].name
             cell.number.text = "\(data[indexPath.row].id)"
             cell.kcal.text = "\(data[indexPath.row].kcal)"
-            
 
-            
         }
         
+    
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        
+
+
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell = sender as? CustomTableViewCell {
-            let detailView = segue.destination as! detailedViewController
+            let detailView = segue.destination as! DetailedViewController            
             
-            detailView.label = cell.name.text!
+            detailView.name = cell.name.text!
+            detailView.id = Int(cell.number.text!)!
+            detailView.kcal = Double(cell.kcal.text!)!
+            
+
         }
+
+        
     }
 
 }
