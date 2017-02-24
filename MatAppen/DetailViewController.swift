@@ -48,48 +48,38 @@ class DetailedViewController: UIViewController {
         nameLabel.text = name
         
         if !comingFromFavorite {
-            
-            self.p1.parseJsonNut(id: self.id) {
-                self.data = $0
-                for food in self.data {
-                    self.carbsLabel.text = String(food.carbs)
-                    self.proteinLabel.text = String(food.protein)
-                    self.fatLabel.text = String(food.fat)
-                    self.carbs = food.carbs
-                    self.protein = food.protein
-                    self.fat = food.fat
-                }
-            }
+            getValues()
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    func getValues(){
         
+        self.p1.parseJsonNut(id: self.id) {
+            self.data = $0
+            for food in self.data {
+                self.carbsLabel.text = String(food.carbs)
+                self.proteinLabel.text = String(food.protein)
+                self.fatLabel.text = String(food.fat)
+                
+            }
+        }
     }
 
     @IBAction func favorite(_ sender: UISwitch) {
-        
-        
         if sender.isOn{
             switchState.isOn = true
             
             self.f1.isFavorite(name: self.name, id: self.id, kcal: self.kcal, protein: self.protein, fat: self.fat, carbs: self.carbs, isFav: true)
             
-            
-            
-            UserDefaults.standard.set(switchState.isOn, forKey: id.description)
-            UserDefaults.standard.synchronize()
-            
-            
         }else{
+            
             switchState.isOn = false
             
             self.f1.isFavorite(name: self.name, id: self.id, kcal: self.kcal, protein: self.protein, fat: self.fat, carbs: self.carbs, isFav: false)
-            
-            UserDefaults.standard.set(switchState.isOn, forKey: id.description)
-            UserDefaults.standard.synchronize()
+        
         }
-       
+     
+        UserDefaults.standard.set(switchState.isOn, forKey: id.description)
+        UserDefaults.standard.synchronize()
     }
 }

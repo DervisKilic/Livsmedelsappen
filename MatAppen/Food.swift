@@ -38,12 +38,12 @@ class Food {
 
                 favs = ["name":name,"id":id,"kcal":kcal,"protein":protein, "fat": fat, "carbs":carbs]
                 favArray.append(favs)
+                print(favArray.count) 
 
             } else {
             
                 favArray = favArray.filter { ($0["id"] as! Int) != (id)}
-                print(favArray.count)
-            
+                print(favArray.count)            
             
             }
             UserDefaults.standard.set(favArray, forKey: "favorites")

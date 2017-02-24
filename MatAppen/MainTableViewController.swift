@@ -100,7 +100,7 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell = sender as? CustomTableViewCell {
-            let detailView = segue.destination as! DetailedViewController            
+            let detailView = segue.destination as! DetailedViewController
             
             detailView.name = cell.name.text!
             detailView.id = Int(cell.number.text!)!

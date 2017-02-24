@@ -20,9 +20,8 @@ class FavoriteTableTableViewController: UITableViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
-
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -58,8 +57,6 @@ class FavoriteTableTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
-        
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -69,7 +66,7 @@ class FavoriteTableTableViewController: UITableViewController {
             detailView.name = cell.name.text!
             detailView.comingFromFavorite = true
             detailView.id = Int(cell.number.text!)!
-            
+            detailView.kcal = Double(cell.kcal.text!)!
         }
         
         
