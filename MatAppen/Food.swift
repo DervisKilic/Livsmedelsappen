@@ -34,23 +34,20 @@ class Food {
         if let favorites = defaults.array(forKey: "favorites"){
             favArray = favorites as! [Dictionary<String, Any>]
         
-        if isFav{
-            
-                
-            
-                
+            if isFav {
+
                 favs = ["name":name,"id":id,"kcal":kcal,"protein":protein, "fat": fat, "carbs":carbs]
                 favArray.append(favs)
 
-        }else{
+            } else {
             
                 favArray = favArray.filter { ($0["id"] as! Int) != (id)}
                 print(favArray.count)
             
             
-        }
-        UserDefaults.standard.set(favArray, forKey: "favorites")
-        UserDefaults.standard.synchronize()
+            }
+            UserDefaults.standard.set(favArray, forKey: "favorites")
+            UserDefaults.standard.synchronize()
         }
     }
 }

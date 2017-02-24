@@ -89,7 +89,6 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
 
         }
         
-    
         return cell
     }
     
@@ -105,8 +104,7 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
             
             detailView.name = cell.name.text!
             detailView.id = Int(cell.number.text!)!
-            detailView.kcal = Double(cell.kcal.text!)!
-            
+            detailView.kcal = Double(cell.kcal.text!)!            
 
         }
 

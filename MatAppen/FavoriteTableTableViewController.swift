@@ -11,12 +11,18 @@ import UIKit
 class FavoriteTableTableViewController: UITableViewController {
 
     
+    var data = [String: Any]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.reloadData()
         
-        
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
+
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -39,17 +45,20 @@ class FavoriteTableTableViewController: UITableViewController {
         let defaults = UserDefaults.standard
         if let favs = defaults.array(forKey: "favorites"){
             
-            var data: [String] = []
 
+            data = favs[indexPath.row] as! Dictionary<String,Any>
+            cell.name.text = (data["name"] as! String)
+            cell.kcal.text = String(data["kcal"] as! Double)
+            cell.number.text = String(data["id"] as! Int)
             
-            print(favs.count)
-            print(favs)
         }
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        
+        
         
     }
     
@@ -58,8 +67,8 @@ class FavoriteTableTableViewController: UITableViewController {
             let detailView = segue.destination as! DetailedViewController
             
             detailView.name = cell.name.text!
+            detailView.comingFromFavorite = true
             detailView.id = Int(cell.number.text!)!
-            detailView.carbs = Double(cell.kcal.text!)!
             
         }
         

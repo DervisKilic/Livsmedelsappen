@@ -30,6 +30,7 @@ class DetailedViewController: UIViewController {
     var favs: [Double] = []
     var kcal : Double = 0.0
     let defaults = UserDefaults.standard
+    var comingFromFavorite = false
     
     
     
@@ -39,23 +40,25 @@ class DetailedViewController: UIViewController {
         
         let switchRead = defaults.bool(forKey: id.description)
         
-        if switchRead {
+        if switchRead || comingFromFavorite {
         switchState.isOn = true
         }
     
     
         nameLabel.text = name
         
-        self.p1.parseJsonNut(id: self.id) {
-            self.data = $0
-            for food in self.data {
-                self.carbsLabel.text = String(food.carbs)
-                self.proteinLabel.text = String(food.protein)
-                self.fatLabel.text = String(food.fat)
-                
-                self.carbs = food.carbs
-                self.protein = food.protein
-                self.fat = food.fat
+        if !comingFromFavorite {
+            
+            self.p1.parseJsonNut(id: self.id) {
+                self.data = $0
+                for food in self.data {
+                    self.carbsLabel.text = String(food.carbs)
+                    self.proteinLabel.text = String(food.protein)
+                    self.fatLabel.text = String(food.fat)
+                    self.carbs = food.carbs
+                    self.protein = food.protein
+                    self.fat = food.fat
+                }
             }
         }
     }
