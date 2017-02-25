@@ -14,8 +14,7 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var p1 = ParseHelper()
     
-    var data: [Food] = []
-    
+    var data: [Food] = []    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,8 +103,7 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
             
             detailView.name = cell.name.text!
             detailView.id = Int(cell.number.text!)!
-            detailView.kcal = Double(cell.kcal.text!)!            
-
+            detailView.kcal = Double(cell.kcal.text!)!
         }
 
         

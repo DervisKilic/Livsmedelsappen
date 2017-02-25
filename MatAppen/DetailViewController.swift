@@ -40,69 +40,50 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     var kcal : Double = 0.0
     let defaults = UserDefaults.standard
     var comingFromFavorite = false
-    
-    
-    
+    var switchRead = false
+    var savedImage : Data?
+    var idImage = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        if let image = UIImage(contentsOfFile: ImagePath){
-            
-            foodImage.image = image
-            
-        }else{
-            NSLog("Failed to to load from: \(ImagePath)")
-        }
+        print("view didload \(switchRead)")
+        
+       setData()
+        
+       
         
         
-        
-        
-        let switchRead = defaults.bool(forKey: id.description)
-
-        if switchRead || comingFromFavorite {
-        switchState.isOn = true
-            
-        }
-    
-    
-        nameLabel.text = name
-        
-        if !comingFromFavorite {
-            getValues()
-        }
     }
     
-    func getValues(){
+    override func viewWillDisappear(_ animated: Bool) {
+        UserDefaults.standard.set(switchRead, forKey: id.description)
+        UserDefaults.standard.synchronize()
         
-        self.p1.parseJsonNut(id: self.id) {
-            self.data = $0
-            for food in self.data {
-                self.carbsLabel.text = String(food.carbs)
-                self.proteinLabel.text = String(food.protein)
-                self.fatLabel.text = String(food.fat)
-                
-            }
-        }
+       
     }
 
     @IBAction func favorite(_ sender: UISwitch) {
         if sender.isOn{
             switchState.isOn = true
-            
+
             self.f1.isFavorite(name: self.name, id: self.id, kcal: self.kcal, protein: self.protein, fat: self.fat, carbs: self.carbs, isFav: true)
             
+            switchRead = true
         }else{
             
             switchState.isOn = false
             
             self.f1.isFavorite(name: self.name, id: self.id, kcal: self.kcal, protein: self.protein, fat: self.fat, carbs: self.carbs, isFav: false)
-        
+            
+            switchRead = false
+
         }
      
-        UserDefaults.standard.set(switchState.isOn, forKey: id.description)
+        UserDefaults.standard.set(switchRead, forKey: id.description)
         UserDefaults.standard.synchronize()
+        print("end favSwitch and saved \(switchRead)")
+
     }
     
     @IBAction func addImageButton(_ sender: UIButton) {
@@ -118,13 +99,16 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         else{
             fatalError("No type")
         }
+        
         present(picker,animated: true, completion: nil)
         
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print("choosing picture \(switchRead)")
+
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
-        
+
         //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         
         if let data = UIImagePNGRepresentation(image){
@@ -138,10 +122,54 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
             }
         }
         
-        
         foodImage.image = image
+        idImage = id.description
+        savedImage =  UIImagePNGRepresentation(image)
+        
+        UserDefaults.standard.set(savedImage, forKey: idImage)
+        UserDefaults.standard.synchronize()
+        
+        print("after choosing picture \(switchRead)")
+
         
         picker.dismiss(animated: true, completion: nil)
         
+    }
+    
+    func setData(){
+        print("first setData \(switchRead)")
+
+        nameLabel.text = name
+
+        if !comingFromFavorite {
+            self.p1.parseJsonNut(id: self.id) {
+                self.data = $0
+                for food in self.data {
+                    self.carbsLabel.text = String(food.carbs)
+                    self.proteinLabel.text = String(food.protein)
+                    self.fatLabel.text = String(food.fat)
+                }
+            }
+        }
+        
+        if let imgData = defaults.object(forKey: idImage) as? Data
+        {
+            if let image = UIImage(data: imgData)
+            {
+                foodImage.image = image
+            }
+        }else{
+            NSLog("Failed to to load from: \(ImagePath)")
+        }
+        
+        
+        switchRead = defaults.bool(forKey: id.description)
+        print("second setData after get value \(switchRead)")
+
+        
+        if switchRead || comingFromFavorite {
+            switchState.isOn = true
+            
+        }
     }
 }

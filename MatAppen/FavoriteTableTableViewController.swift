@@ -12,6 +12,8 @@ class FavoriteTableTableViewController: UITableViewController {
 
     
     var data = [String: Any]()
+    var id = ""
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,7 @@ class FavoriteTableTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
+
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -49,6 +52,8 @@ class FavoriteTableTableViewController: UITableViewController {
             cell.name.text = (data["name"] as! String)
             cell.kcal.text = String(data["kcal"] as! Double)
             cell.number.text = String(data["id"] as! Int)
+            id = cell.number.text!
+            print(id)
             
         }
 
@@ -67,6 +72,12 @@ class FavoriteTableTableViewController: UITableViewController {
             detailView.comingFromFavorite = true
             detailView.id = Int(cell.number.text!)!
             detailView.kcal = Double(cell.kcal.text!)!
+            detailView.switchRead = defaults.bool(forKey: id)
+            
+            
+            
+            print(detailView.switchRead)
+            
         }
         
         
