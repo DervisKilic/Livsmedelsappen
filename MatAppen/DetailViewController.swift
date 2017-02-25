@@ -8,8 +8,9 @@
 
 import UIKit
 
-class DetailedViewController: UIViewController {
+class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
+    @IBOutlet weak var foodImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var fatLabel: UILabel!
@@ -18,6 +19,14 @@ class DetailedViewController: UIViewController {
     
     @IBOutlet weak var switchState: UISwitch!
     
+    
+    var ImagePath : String{
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentDirectory = paths[0]
+        
+        return documentDirectory.appending("/chached.png")
+        
+    }
     
     var name : String = ""
     var id : Int = 0
@@ -38,10 +47,23 @@ class DetailedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let switchRead = defaults.bool(forKey: id.description)
+
+        if let image = UIImage(contentsOfFile: ImagePath){
+            
+            foodImage.image = image
+            
+        }else{
+            NSLog("Failed to to load from: \(ImagePath)")
+        }
         
+        
+        
+        
+        let switchRead = defaults.bool(forKey: id.description)
+
         if switchRead || comingFromFavorite {
         switchState.isOn = true
+            
         }
     
     
@@ -81,5 +103,45 @@ class DetailedViewController: UIViewController {
      
         UserDefaults.standard.set(switchState.isOn, forKey: id.description)
         UserDefaults.standard.synchronize()
+    }
+    
+    @IBAction func addImageButton(_ sender: UIButton) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            picker.sourceType = .camera
+        }
+        else if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+        }
+        else{
+            fatalError("No type")
+        }
+        present(picker,animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerEditedImage] as! UIImage
+        
+        //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        
+        if let data = UIImagePNGRepresentation(image){
+            do{
+                let url = URL(fileURLWithPath: ImagePath)
+                try data.write(to: url)
+                NSLog("Done image data to file \(ImagePath)")
+            }
+            catch let error{
+                NSLog("Failed to save image: \(error)")
+            }
+        }
+        
+        
+        foodImage.image = image
+        
+        picker.dismiss(animated: true, completion: nil)
+        
     }
 }
