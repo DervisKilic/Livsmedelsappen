@@ -81,11 +81,6 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
             cell.number.text = String(data[indexPath.row].id)
             cell.kcal.text = String(data[indexPath.row].kcal)
             
-        } else {
-            cell.name.text = data[indexPath.row].name
-            cell.number.text = "\(data[indexPath.row].id)"
-            cell.kcal.text = "\(data[indexPath.row].kcal)"
-
         }
         
         return cell

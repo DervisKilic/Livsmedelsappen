@@ -143,9 +143,9 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
             self.p1.parseJsonNut(id: self.id) {
                 self.data = $0
                 for food in self.data {
-                    self.carbsLabel.text = String(food.carbs)
-                    self.proteinLabel.text = String(food.protein)
-                    self.fatLabel.text = String(food.fat)
+                    self.carbsLabel.text = "Kolhydrater: \(String(food.carbs))"
+                    self.proteinLabel.text = "Protein: \(String(food.protein))"
+                    self.fatLabel.text = "Fett: \(String(food.fat))"
                   
                 }
             }

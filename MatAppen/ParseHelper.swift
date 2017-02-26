@@ -24,7 +24,7 @@ class ParseHelper {
                     let jsonOptions = JSONSerialization.ReadingOptions()
                     do {
                         if let parsed = try JSONSerialization.jsonObject(with: actualData, options: jsonOptions) as? [[String:Any]] {
-                            
+                            DispatchQueue.main.async {
                             var foods : [Food] = []
 
                             for item in parsed {
@@ -35,7 +35,7 @@ class ParseHelper {
 
                             }
                             data(foods)
-                            
+                            }
                         } else {
                             NSLog("Failed to cast from json.")
                         }
@@ -69,12 +69,13 @@ class ParseHelper {
                     do {
                         if let parsed = try JSONSerialization.jsonObject(with: actualData, options: jsonOptions) as? [String:Any] {
                             
+                            DispatchQueue.main.async {
                             let item = parsed["nutrientValues"] as! [String:Any]
                             let kcal = item["energyKcal"] as! Double
                            
                             data(kcal)
 
-                            
+                            }
                         } else {
                             NSLog("Failed to cast from json.")
                         }
