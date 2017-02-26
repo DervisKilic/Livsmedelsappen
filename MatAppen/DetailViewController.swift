@@ -140,19 +140,15 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
             NSLog("Failed to load image from imagepath: \(imagePath)")
         }
         
-        if !comingFromFavorite {
             self.p1.parseJsonNut(id: self.id) {
                 self.data = $0
                 for food in self.data {
                     self.carbsLabel.text = String(food.carbs)
                     self.proteinLabel.text = String(food.protein)
                     self.fatLabel.text = String(food.fat)
-                    self.carbs = food.carbs
-                    self.protein = food.protein
-                    self.fat = food.fat
+                  
                 }
             }
-        }
         
         switchRead = defaults.bool(forKey: id.description)
         
