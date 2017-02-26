@@ -35,7 +35,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     let defaults = UserDefaults.standard
     var comingFromFavorite = false
     var switchRead = false
-    
+    var runOnce = true
     
     var imagePath: String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -64,11 +64,19 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func favorite(_ sender: UISwitch) {
+        
         if sender.isOn{
             switchState.isOn = true
             
             self.f1.isFavorite(name: self.name, id: self.id, kcal: self.kcal, protein: self.protein, fat: self.fat, carbs: self.carbs, isFav: true)
             
+            if !runOnce{
+            self.f1.isFavorite(name: self.name, id: self.id, kcal: self.kcal, protein: self.protein, fat: self.fat, carbs: self.carbs, isFav: true)
+                runOnce = true
+                UserDefaults.standard.set(runOnce, forKey: "run")
+                UserDefaults.standard.synchronize()
+            }
+
             switchRead = true
         }else{
             
@@ -124,13 +132,13 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     func setData(){
+        nameLabel.text = name
+        runOnce = defaults.bool(forKey: "run")
         if let image = UIImage(contentsOfFile: imagePath){
             foodImage.image = image
         }else {
             NSLog("Failed to load image from imagepath: \(imagePath)")
         }
-        
-        nameLabel.text = name
         
         if !comingFromFavorite {
             self.p1.parseJsonNut(id: self.id) {
@@ -139,6 +147,9 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
                     self.carbsLabel.text = String(food.carbs)
                     self.proteinLabel.text = String(food.protein)
                     self.fatLabel.text = String(food.fat)
+                    self.carbs = food.carbs
+                    self.protein = food.protein
+                    self.fat = food.fat
                 }
             }
         }
