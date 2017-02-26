@@ -34,10 +34,12 @@ class FavoriteTableTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection: Int) -> Int {
         
         let defaults = UserDefaults.standard
-        let favs = defaults.array(forKey: "favorites")
+        if let favs = defaults.array(forKey: "favorites"){
+            return favs.count
+        }else{
+            return 1
+        }
         
-        
-        return favs!.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,12 +74,6 @@ class FavoriteTableTableViewController: UITableViewController {
             detailView.comingFromFavorite = true
             detailView.id = Int(cell.number.text!)!
             detailView.kcal = Double(cell.kcal.text!)!
-            detailView.switchRead = defaults.bool(forKey: id)
-            
-            
-            
-            print(detailView.switchRead)
-            
         }
         
         
