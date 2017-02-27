@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E948D2091E5C2CB3004FF6A9 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E948D2081E5C2CB3004FF6A9 /* MainTableViewController.swift */; };
 		E948D20B1E5C4F02004FF6A9 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = E948D20A1E5C4F02004FF6A9 /* Food.swift */; };
-		E948D20F1E5D9A52004FF6A9 /* CamraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E948D20E1E5D9A52004FF6A9 /* CamraViewController.swift */; };
 		E948D2111E5DE8E8004FF6A9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E948D2101E5DE8E8004FF6A9 /* DetailViewController.swift */; };
 		E960A4D61E5EFDEC004A9E4C /* FavoriteTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E960A4D51E5EFDEC004A9E4C /* FavoriteTableTableViewController.swift */; };
 		E9D8C10F1E5B2A490096B768 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D8C10E1E5B2A490096B768 /* AppDelegate.swift */; };
@@ -24,7 +23,6 @@
 /* Begin PBXFileReference section */
 		E948D2081E5C2CB3004FF6A9 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		E948D20A1E5C4F02004FF6A9 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
-		E948D20E1E5D9A52004FF6A9 /* CamraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CamraViewController.swift; sourceTree = "<group>"; };
 		E948D2101E5DE8E8004FF6A9 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E960A4D51E5EFDEC004A9E4C /* FavoriteTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteTableTableViewController.swift; sourceTree = "<group>"; };
 		E9D8C10B1E5B2A490096B768 /* MatAppen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatAppen.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,7 +76,6 @@
 				E9D8C11A1E5B2A490096B768 /* Info.plist */,
 				E9D8C1221E5B2ED90096B768 /* ParseHelper.swift */,
 				E948D20A1E5C4F02004FF6A9 /* Food.swift */,
-				E948D20E1E5D9A52004FF6A9 /* CamraViewController.swift */,
 				E948D2101E5DE8E8004FF6A9 /* DetailViewController.swift */,
 				E960A4D51E5EFDEC004A9E4C /* FavoriteTableTableViewController.swift */,
 			);
@@ -165,7 +162,6 @@
 				E948D2091E5C2CB3004FF6A9 /* MainTableViewController.swift in Sources */,
 				E9D8C1231E5B2ED90096B768 /* ParseHelper.swift in Sources */,
 				E948D20B1E5C4F02004FF6A9 /* Food.swift in Sources */,
-				E948D20F1E5D9A52004FF6A9 /* CamraViewController.swift in Sources */,
 				E948D2111E5DE8E8004FF6A9 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,8 +8,14 @@
 
 import UIKit
 
-class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
-    
+class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {    
+
+   
+    @IBOutlet weak var bat2: NSLayoutConstraint!
+    @IBOutlet weak var bat5: NSLayoutConstraint!
+    @IBOutlet weak var bat4: NSLayoutConstraint!
+    @IBOutlet weak var bat3: NSLayoutConstraint!
+    @IBOutlet weak var bat1: NSLayoutConstraint!
     @IBOutlet weak var foodImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -54,13 +60,51 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         setData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        bat1.constant -= view.bounds.height
+        bat2.constant -= view.bounds.height
+        bat3.constant -= view.bounds.height
+        bat4.constant -= view.bounds.height
+        bat5.constant -= view.bounds.height
+
+
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let batmen = [bat1, bat2, bat3, bat4, bat5]
+        
+        for (index,batman) in batmen.enumerated() {
+            let d = 1.0 + Double(index)
+            UIView.animate(withDuration: d, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+                batman!.constant += self.view.bounds.height
+                self.view.layoutIfNeeded()
+                
+            }, completion: nil)
+        }
+        /*
+        UIView.animate(withDuration: 1.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            self.bat1.constant += self.view.bounds.height
+            self.bat2.constant += self.view.bounds.height
+            self.bat3.constant += self.view.bounds.height
+            self.bat4.constant += self.view.bounds.height
+            self.bat5.constant += self.view.bounds.height
+            self.view.layoutIfNeeded()
+            
+        }, completion: nil)
+        */
+        
+        
+        
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         UserDefaults.standard.set(switchRead, forKey: id.description)
         UserDefaults.standard.synchronize()
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
     }
     
     @IBAction func favorite(_ sender: UISwitch) {
