@@ -112,13 +112,16 @@ class ParseHelper {
                             DispatchQueue.main.async {
                               
                             var food : [Food] = []
+                            var healthiness = 0.0
                             
                             let item = parsed["nutrientValues"] as! [String:Any]
                             let protein = item["protein"] as! Double
                             let fat = item["fat"] as! Double
                             let carbs = item["carbohydrates"] as! Double
+                            healthiness = (protein + carbs) * fat
+
                             
-                            food.append(Food(protein: protein, fat: fat, carbs: carbs))
+                                food.append(Food(protein: protein, fat: fat, carbs: carbs, healthiness: healthiness))
     
                             nuts(food)
                             }

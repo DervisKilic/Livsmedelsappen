@@ -20,14 +20,16 @@ class Food {
     var favs = [String:Any]()
     var favArray: [Dictionary<String,Any>] = []
     let defaults = UserDefaults.standard
+    var healthiness = 0.0
     
-    init(name: String = "", id: Int = 0, kcal: Double = 0.0,protein: Double = 0.0, fat: Double = 0.0, carbs: Double = 0.0) {
+    init(name: String = "", id: Int = 0, kcal: Double = 0.0,protein: Double = 0.0, fat: Double = 0.0, carbs: Double = 0.0, healthiness: Double = 0.0) {
         self.name = name
         self.id = id
         self.kcal = kcal
         self.protein = protein
         self.fat = fat
         self.carbs = carbs
+        self.healthiness = healthiness
     }
     func isFavorite(name: String, id: Int, kcal: Double,protein: Double, fat: Double, carbs: Double, isFav: Bool) {
         if let favorites = defaults.array(forKey: "favorites") as? [Dictionary<String, Any>] {

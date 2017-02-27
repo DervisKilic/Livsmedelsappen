@@ -10,12 +10,19 @@ import UIKit
 
 class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {    
 
-   
-    @IBOutlet weak var bat2: NSLayoutConstraint!
-    @IBOutlet weak var bat5: NSLayoutConstraint!
-    @IBOutlet weak var bat4: NSLayoutConstraint!
-    @IBOutlet weak var bat3: NSLayoutConstraint!
+    @IBOutlet weak var batImage1: UIImageView!
+    @IBOutlet weak var batImage2: UIImageView!
+    @IBOutlet weak var batImage3: UIImageView!
+    @IBOutlet weak var batImage4: UIImageView!
+    @IBOutlet weak var batImage5: UIImageView!
     @IBOutlet weak var bat1: NSLayoutConstraint!
+    @IBOutlet weak var bat2: NSLayoutConstraint!
+    @IBOutlet weak var bat3: NSLayoutConstraint!
+    @IBOutlet weak var bat4: NSLayoutConstraint!
+    @IBOutlet weak var bat5: NSLayoutConstraint!
+    
+    
+    
     @IBOutlet weak var foodImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -85,20 +92,6 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
                 
             }, completion: nil)
         }
-        /*
-        UIView.animate(withDuration: 1.5, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-            self.bat1.constant += self.view.bounds.height
-            self.bat2.constant += self.view.bounds.height
-            self.bat3.constant += self.view.bounds.height
-            self.bat4.constant += self.view.bounds.height
-            self.bat5.constant += self.view.bounds.height
-            self.view.layoutIfNeeded()
-            
-        }, completion: nil)
-        */
-        
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -190,14 +183,51 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
                     self.carbsLabel.text = "Kolhydrater: \(String(food.carbs))"
                     self.proteinLabel.text = "Protein: \(String(food.protein))"
                     self.fatLabel.text = "Fett: \(String(food.fat))"
-                  
+                    self.setHealth(healthiness: food.healthiness)
                 }
             }
-        
         switchRead = defaults.bool(forKey: id.description)
         
         if switchRead || comingFromFavorite {
             switchState.isOn = true
+            
+        }
+    }
+    func setHealth(healthiness: Double){
+        print(healthiness)
+        print(healthiness)
+
+        print(healthiness)
+
+        print(healthiness)
+
+        print(healthiness)
+
+        
+        switch healthiness {
+        case 0...20:
+            batImage1.isHidden = false
+        case 0...100:
+            batImage1.isHidden = false
+            batImage2.isHidden = false
+        case 0...200:
+            batImage1.isHidden = false
+            batImage2.isHidden = false
+            batImage3.isHidden = false
+        case 0...300:
+            batImage1.isHidden = false
+            batImage2.isHidden = false
+            batImage3.isHidden = false
+            batImage4.isHidden = false
+        case 0...9999:
+            batImage1.isHidden = false
+            batImage2.isHidden = false
+            batImage3.isHidden = false
+            batImage4.isHidden = false
+            batImage5.isHidden = false
+
+        default:
+            batImage1.isHidden = false
             
         }
     }
