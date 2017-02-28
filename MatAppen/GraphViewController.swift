@@ -15,12 +15,7 @@ class GraphViewController: UIViewController {
     @IBOutlet weak var name2Label: UILabel!
     var name = ""
     var name2 = ""
-    var carbs = ""
-    var fat = ""
-    var prot = ""
-    var carbs2 = ""
-    var fat2 = ""
-    var prot2 = ""
+
     var values1: [String] = []
     var values2: [String] = []
     
@@ -28,19 +23,14 @@ class GraphViewController: UIViewController {
     var graph2 : GKBarGraph!
 
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(values1)
-        print(values2)
         name1Label.text = values1[0]
         name2Label.text = values2[0]
-        carbs = values1[1]
         
-        
-        let g1 = GraphHelper(carbs: values1[1], fat: values1[2], prot: values1[3])
-        let g2 = GraphHelper(carbs: values2[1], fat: values2[2], prot: values2[3])
+        let g1 = GraphHelper(values: values1)
+        let g2 = GraphHelper(values: values2)
         
         graph = GKBarGraph(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300))
         graph .dataSource = g1

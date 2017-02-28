@@ -11,16 +11,12 @@ import GraphKit
 
 class GraphHelper: NSObject, GKBarGraphDataSource {
     
-    var carbs : Double
-    var fat : Double
-    var prot : Double
+    var values: [String]
     
     
     
-    init(carbs: String, fat: String, prot: String){
-        self.carbs = Double(carbs)!
-        self.fat = Double(fat)!
-        self.prot = Double(prot)!
+    init(values: [String]){
+        self.values = values
     }
     
     
@@ -29,15 +25,13 @@ class GraphHelper: NSObject, GKBarGraphDataSource {
     }
     
     public func valueForBar(at index: Int) -> NSNumber! {
-        let values = [self.carbs, self.fat, self.prot]
         
-        return values[index] as NSNumber!
+        return [Double(self.values[1]), Double(self.values[2]), Double(self.values[3])][index] as NSNumber!
     }
     
     public func colorForBar(at index: Int) -> UIColor! {
-        let colors = [UIColor.gk_carrot(), UIColor.gk_amethyst(), UIColor.gk_emerland()]
         
-        return colors[index]
+        return [UIColor.gk_carrot(), UIColor.gk_amethyst(), UIColor.gk_emerland()][index]
         
     }
     
@@ -46,8 +40,7 @@ class GraphHelper: NSObject, GKBarGraphDataSource {
     }
     
     public func titleForBar(at index: Int) -> String! {
-        let names = ["carbs", "fat", "prot"]
 
-        return names[index]
+        return ["carbs", "fat", "prot"][index]
     }
 }

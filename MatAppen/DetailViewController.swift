@@ -238,9 +238,6 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         }
     }
     
-    
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
             if segue.identifier == "s1" {
@@ -268,14 +265,12 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         
         if !compare{
             performSegue(withIdentifier: "s1", sender: nil)
-            compareButton.setTitle("Compare with this", for: .normal)
             compare = true
             UserDefaults.standard.set(compare, forKey: "compare")
             UserDefaults.standard.synchronize()
 
         }else{
             performSegue(withIdentifier: "s2", sender: nil)
-            compareButton.setTitle("Compare", for: .normal)
             compare = false
             UserDefaults.standard.set(compare, forKey: "compare")
             UserDefaults.standard.synchronize()
