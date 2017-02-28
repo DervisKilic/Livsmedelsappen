@@ -17,10 +17,10 @@ class GraphHelper: NSObject, GKBarGraphDataSource {
     
     
     
-    init(carbs: Double, fat: Double, prot: Double){
-        self.carbs = carbs
-        self.fat = fat
-        self.prot = prot
+    init(carbs: String, fat: String, prot: String){
+        self.carbs = Double(carbs)!
+        self.fat = Double(fat)!
+        self.prot = Double(prot)!
     }
     
     
@@ -29,7 +29,7 @@ class GraphHelper: NSObject, GKBarGraphDataSource {
     }
     
     public func valueForBar(at index: Int) -> NSNumber! {
-        let values = [self.carbs*10, self.fat*10, self.prot*10]
+        let values = [self.carbs, self.fat, self.prot]
         
         return values[index] as NSNumber!
     }

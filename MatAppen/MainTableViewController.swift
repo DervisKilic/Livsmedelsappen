@@ -14,6 +14,7 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var p1 = ParseHelper()
     var compare = false
+    var name = ""
     
     var data: [Food] = []    
     

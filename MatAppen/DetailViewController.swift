@@ -171,6 +171,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     func setData(){
+        compare = defaults.bool(forKey: "compare")
         nameLabel.text = name
         runOnce = defaults.bool(forKey: "run")
         if let image = UIImage(contentsOfFile: imagePath){
@@ -186,6 +187,9 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
                     self.proteinLabel.text = "Protein: \(String(food.protein))"
                     self.fatLabel.text = "Fett: \(String(food.fat))"
                     self.setHealth(healthiness: food.healthiness)
+                    self.carbs = food.carbs
+                    self.fat = food.fat
+                    self.protein = food.protein
                 }
             }
         switchRead = defaults.bool(forKey: id.description)
@@ -234,25 +238,47 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         }
     }
     
-    @IBAction func compareThis(_ sender: UIButton) {
-        
-        compare = true
-        if compare{
-            compareButton.setTitle("Compare with this", for: .normal)
-            compare = false
-        }
-        else{
-            
-        }
-        
-    }
+    
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let values = sender as? DetailedViewController {
-            let graphView = segue.destination as! GraphViewController
-            
-            //graphView.fat = values.fat
-            //graphView.carbs = values.carbs
-            //graphView.prot = values.protein
+        
+            if segue.identifier == "s1" {
+                if segue.destination is MainTableViewController {
+                    
+                    let savedValues1 = [name,String(carbs),String(fat),String(protein)]
+                    UserDefaults.standard.set(savedValues1, forKey: "values1")
+                    UserDefaults.standard.synchronize()
+                }
+            }
+            else if segue.identifier == "s2" {
+                
+                if let graphView = segue.destination as? GraphViewController {
+                    let savedValues2 = [name,String(carbs),String(fat),String(protein)]
+                    
+                    UserDefaults.standard.set(savedValues2, forKey: "values2")
+                    UserDefaults.standard.synchronize()
+
+                    graphView.values1 = defaults.array(forKey: "values1") as! [String]
+                    graphView.values2 = defaults.array(forKey: "values2") as! [String]
+            }
+        }
+    }
+    @IBAction func compareButton(_ sender: UIButton) {
+        
+        if !compare{
+            performSegue(withIdentifier: "s1", sender: nil)
+            compareButton.setTitle("Compare with this", for: .normal)
+            compare = true
+            UserDefaults.standard.set(compare, forKey: "compare")
+            UserDefaults.standard.synchronize()
+
+        }else{
+            performSegue(withIdentifier: "s2", sender: nil)
+            compareButton.setTitle("Compare", for: .normal)
+            compare = false
+            UserDefaults.standard.set(compare, forKey: "compare")
+            UserDefaults.standard.synchronize()
 
         }
     }
