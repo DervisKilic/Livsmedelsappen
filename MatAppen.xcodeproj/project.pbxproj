@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93C9D999CC51D04D293FAEBA /* Pods_MatAppen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADECA7624EE71B3B2AAE911 /* Pods_MatAppen.framework */; };
+		E934528B1E65785F00F97E6C /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E934528A1E65785F00F97E6C /* GraphViewController.swift */; };
+		E934528F1E65B57200F97E6C /* GraphHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E934528E1E65B57200F97E6C /* GraphHelper.swift */; };
 		E948D2091E5C2CB3004FF6A9 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E948D2081E5C2CB3004FF6A9 /* MainTableViewController.swift */; };
 		E948D20B1E5C4F02004FF6A9 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = E948D20A1E5C4F02004FF6A9 /* Food.swift */; };
 		E948D2111E5DE8E8004FF6A9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E948D2101E5DE8E8004FF6A9 /* DetailViewController.swift */; };
@@ -21,6 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3ADECA7624EE71B3B2AAE911 /* Pods_MatAppen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MatAppen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9613438D76B6E3D44A695AE1 /* Pods-MatAppen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatAppen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MatAppen/Pods-MatAppen.debug.xcconfig"; sourceTree = "<group>"; };
+		9B1CD109AB3FADD0A4D8D649 /* Pods-MatAppen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatAppen.release.xcconfig"; path = "Pods/Target Support Files/Pods-MatAppen/Pods-MatAppen.release.xcconfig"; sourceTree = "<group>"; };
+		E934528A1E65785F00F97E6C /* GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		E934528E1E65B57200F97E6C /* GraphHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphHelper.swift; sourceTree = "<group>"; };
 		E948D2081E5C2CB3004FF6A9 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		E948D20A1E5C4F02004FF6A9 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		E948D2101E5DE8E8004FF6A9 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -41,17 +49,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C9D999CC51D04D293FAEBA /* Pods_MatAppen.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57900490E96F1164823658CF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9613438D76B6E3D44A695AE1 /* Pods-MatAppen.debug.xcconfig */,
+				9B1CD109AB3FADD0A4D8D649 /* Pods-MatAppen.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		ABB9BC340856CEF3B06F9607 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3ADECA7624EE71B3B2AAE911 /* Pods_MatAppen.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E9D8C1021E5B2A490096B768 = {
 			isa = PBXGroup;
 			children = (
 				E9D8C10D1E5B2A490096B768 /* MatAppen */,
 				E9D8C10C1E5B2A490096B768 /* Products */,
+				57900490E96F1164823658CF /* Pods */,
+				ABB9BC340856CEF3B06F9607 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +106,8 @@
 				E948D20A1E5C4F02004FF6A9 /* Food.swift */,
 				E948D2101E5DE8E8004FF6A9 /* DetailViewController.swift */,
 				E960A4D51E5EFDEC004A9E4C /* FavoriteTableTableViewController.swift */,
+				E934528A1E65785F00F97E6C /* GraphViewController.swift */,
+				E934528E1E65B57200F97E6C /* GraphHelper.swift */,
 			);
 			path = MatAppen;
 			sourceTree = "<group>";
@@ -89,9 +119,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9D8C11D1E5B2A490096B768 /* Build configuration list for PBXNativeTarget "MatAppen" */;
 			buildPhases = (
+				86F29781E7FD153A2A6DFEAB /* [CP] Check Pods Manifest.lock */,
 				E9D8C1071E5B2A490096B768 /* Sources */,
 				E9D8C1081E5B2A490096B768 /* Frameworks */,
 				E9D8C1091E5B2A490096B768 /* Resources */,
+				821D0A7B16559B221B9BFB9C /* [CP] Embed Pods Frameworks */,
+				3376777D49D9991C2B2C5C83 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -150,12 +183,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3376777D49D9991C2B2C5C83 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MatAppen/Pods-MatAppen-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		821D0A7B16559B221B9BFB9C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MatAppen/Pods-MatAppen-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86F29781E7FD153A2A6DFEAB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E9D8C1071E5B2A490096B768 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E934528B1E65785F00F97E6C /* GraphViewController.swift in Sources */,
 				E9D8C1211E5B2BBC0096B768 /* CustomTableViewCell.swift in Sources */,
+				E934528F1E65B57200F97E6C /* GraphHelper.swift in Sources */,
 				E960A4D61E5EFDEC004A9E4C /* FavoriteTableTableViewController.swift in Sources */,
 				E9D8C1111E5B2A490096B768 /* ViewController.swift in Sources */,
 				E9D8C10F1E5B2A490096B768 /* AppDelegate.swift in Sources */,
@@ -281,6 +364,7 @@
 		};
 		E9D8C11E1E5B2A490096B768 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9613438D76B6E3D44A695AE1 /* Pods-MatAppen.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8N6T6BSAZ9;
@@ -294,6 +378,7 @@
 		};
 		E9D8C11F1E5B2A490096B768 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B1CD109AB3FADD0A4D8D649 /* Pods-MatAppen.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8N6T6BSAZ9;

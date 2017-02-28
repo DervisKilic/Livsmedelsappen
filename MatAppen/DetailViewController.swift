@@ -20,6 +20,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var bat3: NSLayoutConstraint!
     @IBOutlet weak var bat4: NSLayoutConstraint!
     @IBOutlet weak var bat5: NSLayoutConstraint!
+    @IBOutlet weak var compareButton: UIButton!
     
     
     
@@ -46,6 +47,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     var favs: [Double] = []
     var kcal : Double = 0.0
     let defaults = UserDefaults.standard
+    var compare = false
     var comingFromFavorite = false
     var switchRead = false
     var runOnce = true
@@ -229,6 +231,29 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         default:
             batImage1.isHidden = false
             
+        }
+    }
+    
+    @IBAction func compareThis(_ sender: UIButton) {
+        
+        compare = true
+        if compare{
+            compareButton.setTitle("Compare with this", for: .normal)
+            compare = false
+        }
+        else{
+            
+        }
+        
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let values = sender as? DetailedViewController {
+            let graphView = segue.destination as! GraphViewController
+            
+            //graphView.fat = values.fat
+            //graphView.carbs = values.carbs
+            //graphView.prot = values.protein
+
         }
     }
 }

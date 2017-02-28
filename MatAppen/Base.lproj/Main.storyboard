@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LUS-En-fzD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oop-ME-GaX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -66,7 +66,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HWM-ht-5AE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="874" y="206"/>
+            <point key="canvasLocation" x="620" y="216"/>
         </scene>
         <!--Detailed View Controller-->
         <scene sceneID="yxE-X5-vHi">
@@ -122,17 +122,8 @@
                                     <action selector="favorite:" destination="ryi-vV-nfI" eventType="valueChanged" id="elj-di-EeJ"/>
                                 </connections>
                             </switch>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBn-LY-3ES">
-                                <rect key="frame" x="16" y="619" width="343" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Add image"/>
-                                <connections>
-                                    <action selector="addImageButton:" destination="ryi-vV-nfI" eventType="touchUpInside" id="B8J-cF-u2F"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pic" translatesAutoresizingMaskIntoConstraints="NO" id="n2H-DR-rs0">
-                                <rect key="frame" x="31" y="428" width="313" height="183"/>
+                                <rect key="frame" x="58" y="347" width="258" height="153"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="batfat" translatesAutoresizingMaskIntoConstraints="NO" id="8Oe-Wa-1MA">
@@ -150,6 +141,24 @@
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="batfat" translatesAutoresizingMaskIntoConstraints="NO" id="sk1-bA-lOA">
                                 <rect key="frame" x="296" y="272" width="62" height="67"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YiR-sp-erg">
+                                <rect key="frame" x="16" y="556" width="343" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Compare"/>
+                                <connections>
+                                    <action selector="compareThis:" destination="ryi-vV-nfI" eventType="touchUpInside" id="aeq-1g-XfD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBn-LY-3ES">
+                                <rect key="frame" x="16" y="508" width="343" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Add image"/>
+                                <connections>
+                                    <action selector="addImageButton:" destination="ryi-vV-nfI" eventType="touchUpInside" id="B8J-cF-u2F"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -195,6 +204,7 @@
                         <outlet property="batImage4" destination="usW-sS-aqH" id="sBs-fD-lqf"/>
                         <outlet property="batImage5" destination="sk1-bA-lOA" id="mpy-QA-GrJ"/>
                         <outlet property="carbsLabel" destination="qPL-1L-Sza" id="0kd-a1-hEt"/>
+                        <outlet property="compareButton" destination="YiR-sp-erg" id="Bcu-qz-zP5"/>
                         <outlet property="fatLabel" destination="L14-2V-q5s" id="PCL-YO-j0R"/>
                         <outlet property="foodImage" destination="n2H-DR-rs0" id="NAd-eG-bKn"/>
                         <outlet property="nameLabel" destination="tLl-so-Equ" id="TjA-Ac-wVh"/>
@@ -205,6 +215,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HDc-MP-BWY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1312.8" y="971.96401799100454"/>
+        </scene>
+        <!--Graph View Controller-->
+        <scene sceneID="GLH-75-vti">
+            <objects>
+                <viewController id="oop-ME-GaX" customClass="GraphViewController" customModule="MatAppen" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0Lp-P2-sNM"/>
+                        <viewControllerLayoutGuide type="bottom" id="ToP-qV-fcn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="d2j-Xy-sQZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hn8-l8-mhW">
+                                <rect key="frame" x="16" y="60" width="343" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name2" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lD-DL-b6r">
+                                <rect key="frame" x="16" y="342" width="343" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bdU-yh-eZT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2693.5999999999999" y="971.96401799100454"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -298,7 +342,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hFP-cM-rqs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1682" y="206"/>
+            <point key="canvasLocation" x="2396" y="217"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jmz-e9-IH3">
@@ -324,6 +368,6 @@
         <image name="pic" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2q8-tk-dYM"/>
+        <segue reference="ffH-CQ-Emg"/>
     </inferredMetricsTieBreakers>
 </document>
