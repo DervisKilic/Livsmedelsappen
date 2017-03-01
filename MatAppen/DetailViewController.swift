@@ -69,16 +69,17 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        bat1.constant -= view.bounds.height
+       /* bat1.constant -= view.bounds.height
         bat2.constant -= view.bounds.height
         bat3.constant -= view.bounds.height
         bat4.constant -= view.bounds.height
         bat5.constant -= view.bounds.height
+ */
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        /*
         let batmen = [bat1, bat2, bat3, bat4, bat5]
         
         for (index,batman) in batmen.enumerated() {
@@ -89,6 +90,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
                 
             }, completion: nil)
         }
+ */
     }
     
     override func viewWillDisappear(_ animated: Bool) {
