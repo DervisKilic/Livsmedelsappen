@@ -55,7 +55,7 @@ class ParseHelper {
         
     }
     
-    func parseJsonKcal(id: Int, data: @escaping (Double) -> Void){
+    func parseJsonKcal(id: Int, data: @escaping (Int) -> Void){
         
         let urlString = "http://www.matapi.se/foodstuff/\(id)"
         if let safeUrlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
@@ -71,7 +71,7 @@ class ParseHelper {
                             
                             DispatchQueue.main.async {
                             let item = parsed["nutrientValues"] as! [String:Any]
-                            let kcal = item["energyKcal"] as! Double
+                            let kcal = item["energyKcal"] as! Int
                            
                             data(kcal)
 

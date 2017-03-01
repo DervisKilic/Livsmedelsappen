@@ -13,8 +13,6 @@ class GraphHelper: NSObject, GKBarGraphDataSource {
     
     var values: [String]
     
-    
-    
     init(values: [String]){
         self.values = values
     }

@@ -45,7 +45,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     let f1 = Food()
     var data: [Food] = []
     var favs: [Double] = []
-    var kcal : Double = 0.0
+    var kcal : Int = 0
     let defaults = UserDefaults.standard
     var compare = false
     var comingFromFavorite = false
@@ -200,16 +200,6 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         }
     }
     func setHealth(healthiness: Double){
-        print(healthiness)
-        print(healthiness)
-
-        print(healthiness)
-
-        print(healthiness)
-
-        print(healthiness)
-
-        
         switch healthiness {
         case 0...20:
             batImage1.isHidden = false
@@ -234,7 +224,6 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
 
         default:
             batImage1.isHidden = false
-            
         }
     }
     
@@ -274,7 +263,6 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
             compare = false
             UserDefaults.standard.set(compare, forKey: "compare")
             UserDefaults.standard.synchronize()
-
         }
     }
 }

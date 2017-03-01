@@ -49,14 +49,10 @@ class FavoriteTableTableViewController: UITableViewController {
         let defaults = UserDefaults.standard
         if let favs = defaults.array(forKey: "favorites"){
             
-
             data = favs[indexPath.row] as! Dictionary<String,Any>
             cell.name.text = (data["name"] as! String)
-            cell.kcal.text = String(data["kcal"] as! Double)
-            cell.number.text = String(data["id"] as! Int)
+            cell.kcal.text = String("\(data["kcal"] as! Int) kcal")
             id = cell.number.text!
-            print(id)
-            
         }
 
         return cell
@@ -73,7 +69,6 @@ class FavoriteTableTableViewController: UITableViewController {
             detailView.name = cell.name.text!
             detailView.comingFromFavorite = true
             detailView.id = Int(cell.number.text!)!
-            detailView.kcal = Double(cell.kcal.text!)!
         }
         
         
