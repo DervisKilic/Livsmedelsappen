@@ -31,13 +31,13 @@ class Food {
         self.carbs = carbs
         self.healthiness = healthiness
     }
-    func isFavorite(name: String, id: Int, kcal: Int,protein: Double, fat: Double, carbs: Double, isFav: Bool) {
+    func isFavorite(name: String, id: Int, kcal: Int,protein: Double, fat: Double, carbs: Double, healthiness: Double, isFav: Bool) {
         if let favorites = defaults.array(forKey: "favorites") as? [Dictionary<String, Any>] {
             favArray = favorites 
         
             if isFav {
 
-                favs = ["name":name,"id":id,"kcal":kcal,"protein":protein, "fat": fat, "carbs":carbs]
+                favs = ["name": name,"id": id,"kcal": kcal,"protein": protein, "fat": fat, "carbs": carbs, "healthiness": healthiness]
                 
                 favArray.append(favs)
                 print(favArray.count) 

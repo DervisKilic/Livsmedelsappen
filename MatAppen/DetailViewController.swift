@@ -46,9 +46,9 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     var data: [Food] = []
     var favs: [Double] = []
     var kcal : Int = 0
+    var healthiness: Double = 0.0
     let defaults = UserDefaults.standard
     var compare = false
-    var comingFromFavorite = false
     var switchRead = false
     var runOnce = true
     
@@ -61,11 +61,9 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         
     }
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(id)
         setData()
     }
     
@@ -76,9 +74,6 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         bat3.constant -= view.bounds.height
         bat4.constant -= view.bounds.height
         bat5.constant -= view.bounds.height
-
-
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -106,11 +101,10 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         
         if sender.isOn{
             switchState.isOn = true
-            
-            self.f1.isFavorite(name: self.name, id: self.id, kcal: self.kcal, protein: self.protein, fat: self.fat, carbs: self.carbs, isFav: true)
+            self.f1.isFavorite(name: self.name, id: self.id, kcal: self.kcal, protein: self.protein, fat: self.fat, carbs: self.carbs, healthiness: self.healthiness, isFav: true)
             
             if !runOnce{
-            self.f1.isFavorite(name: self.name, id: self.id, kcal: self.kcal, protein: self.protein, fat: self.fat, carbs: self.carbs, isFav: true)
+            self.f1.isFavorite(name: self.name, id: self.id, kcal: self.kcal, protein: self.protein, fat: self.fat, carbs: self.carbs, healthiness: self.healthiness, isFav: true)
                 runOnce = true
                 UserDefaults.standard.set(runOnce, forKey: "run")
                 UserDefaults.standard.synchronize()
@@ -121,13 +115,10 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
             
             switchState.isOn = false
             
-            self.f1.isFavorite(name: self.name, id: self.id, kcal: self.kcal, protein: self.protein, fat: self.fat, carbs: self.carbs, isFav: false)
+            self.f1.isFavorite(name: self.name, id: self.id, kcal: self.kcal, protein: self.protein, fat: self.fat, carbs: self.carbs, healthiness: self.healthiness, isFav: false)
             
             switchRead = false
         }
-        
-        UserDefaults.standard.set(switchRead, forKey: id.description)
-        UserDefaults.standard.synchronize()
     }
     
     @IBAction func addImageButton(_ sender: UIButton) {
@@ -145,14 +136,11 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         
         present(picker,animated: true, completion: nil)
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
-        
-        //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         
         if let data = UIImagePNGRepresentation(image){
             do{
@@ -179,27 +167,17 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         }else {
             NSLog("Failed to load image from imagepath: \(imagePath)")
         }
-        
-            self.p1.parseJsonNut(id: self.id) {
-                self.data = $0
-                for food in self.data {
-                    self.carbsLabel.text = "Kolhydrater: \(String(food.carbs))"
-                    self.proteinLabel.text = "Protein: \(String(food.protein))"
-                    self.fatLabel.text = "Fett: \(String(food.fat))"
-                    self.setHealth(healthiness: food.healthiness)
-                    self.carbs = food.carbs
-                    self.fat = food.fat
-                    self.protein = food.protein
-                }
-            }
+        self.carbsLabel.text = "Kolhydrater: \(carbs)g"
+        self.proteinLabel.text = "Protein: \(protein)g"
+        self.fatLabel.text = "Fett: \(fat)g"
+
         switchRead = defaults.bool(forKey: id.description)
         
-        if switchRead || comingFromFavorite {
+        if switchRead {
             switchState.isOn = true
             
         }
-    }
-    func setHealth(healthiness: Double){
+        
         switch healthiness {
         case 0...20:
             batImage1.isHidden = false
@@ -221,12 +199,11 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
             batImage3.isHidden = false
             batImage4.isHidden = false
             batImage5.isHidden = false
-
+            
         default:
             batImage1.isHidden = false
         }
     }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
             if segue.identifier == "s1" {
