@@ -40,9 +40,10 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
-            
+        searchController.searchBar.barTintColor = UIColor(red: 0.29, green: 0.384, blue: 0.278, alpha: 1.0)
+        searchController.searchBar.tintColor = UIColor(red: 0.71, green: 0.54, blue: 0.54, alpha: 1.0)
         }
-        
+        tableView.backgroundColor = UIColor(red: 0.29, green: 0.384, blue: 0.278, alpha: 1.0)
         
     }
     

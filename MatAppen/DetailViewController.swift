@@ -56,6 +56,8 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         print(id)
+        switchState.onTintColor = UIColor(red: 0.56, green: 0.71, blue: 0.54, alpha: 1.0)
+
         setData()
     }
     
@@ -115,7 +117,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         }
     }
     
-    @IBAction func addImageButton(_ sender: UIButton) {
+    @IBAction func addImg(_ sender: Any) {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
@@ -130,6 +132,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         
         present(picker,animated: true, completion: nil)
+
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -161,9 +164,9 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         }else {
             NSLog("Failed to load image from imagepath: \(imagePath)")
         }
-        self.carbsLabel.text = "Kolhydrater: \(carbs)g"
-        self.proteinLabel.text = "Protein: \(protein)g"
-        self.fatLabel.text = "Fett: \(fat)g"
+        self.carbsLabel.text = "\(carbs)"
+        self.proteinLabel.text = "\(protein)"
+        self.fatLabel.text = "\(fat)"
 
         switchRead = defaults.bool(forKey: id.description)
         
