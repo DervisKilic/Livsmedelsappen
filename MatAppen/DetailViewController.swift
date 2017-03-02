@@ -12,11 +12,12 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     
 
     
-    @IBOutlet weak var apple5: UIImageView!
-    @IBOutlet weak var apple4: UIImageView!
-    @IBOutlet weak var apple3: UIImageView!
-    @IBOutlet weak var apple2: UIImageView!
-    @IBOutlet weak var apple1: UIImageView!
+    
+    @IBOutlet weak var apple5: NSLayoutConstraint!
+    @IBOutlet weak var apple4: NSLayoutConstraint!
+    @IBOutlet weak var apple3: NSLayoutConstraint!
+    @IBOutlet weak var apple2: NSLayoutConstraint!
+    @IBOutlet weak var apple1: NSLayoutConstraint!
     @IBOutlet weak var compareButton: UIButton!
     @IBOutlet weak var foodImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -53,6 +54,9 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         print(id)
+        compareButton.layer.cornerRadius = 5
+        compareButton.layer.borderWidth = 2
+        compareButton.layer.borderColor = UIColor.white.cgColor
         switchState.onTintColor = UIColor(red: 0.56, green: 0.71, blue: 0.54, alpha: 1.0)
 
         setData()
@@ -60,28 +64,28 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       /* bat1.constant -= view.bounds.height
-        bat2.constant -= view.bounds.height
-        bat3.constant -= view.bounds.height
-        bat4.constant -= view.bounds.height
-        bat5.constant -= view.bounds.height
- */
+        apple1.constant -= view.bounds.height
+        apple2.constant -= view.bounds.height
+        apple3.constant -= view.bounds.height
+        apple4.constant -= view.bounds.height
+        apple5.constant -= view.bounds.height
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        /*
-        let batmen = [bat1, bat2, bat3, bat4, bat5]
         
-        for (index,batman) in batmen.enumerated() {
+        let apples = [apple1, apple2, apple3, apple4, apple5]
+        
+        for (index,appl) in apples.enumerated() {
             let d = 1.0 + Double(index)
-            UIView.animate(withDuration: d, delay: 0.0, options: UIViewAnimationOptions.curveEaseOut, animations: {
-                batman!.constant += self.view.bounds.height
+            UIView.animate(withDuration: d, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: {
+                appl!.constant += self.view.bounds.height
                 self.view.layoutIfNeeded()
                 
             }, completion: nil)
         }
- */
+ 
     }
     
     override func viewWillDisappear(_ animated: Bool) {
