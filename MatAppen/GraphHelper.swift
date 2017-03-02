@@ -17,7 +17,6 @@ class GraphHelper: NSObject, GKBarGraphDataSource {
         self.values = values
     }
     
-    
     public func numberOfBars() -> Int {
         return 3
     }
