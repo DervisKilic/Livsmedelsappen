@@ -22,17 +22,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foody" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aze-Bl-Vwp">
-                                <rect key="frame" x="16" y="269" width="343" height="129"/>
-                                <fontDescription key="fontDescription" name="SignPainter-HouseScript" family="SignPainter" pointSize="95"/>
-                                <color key="textColor" red="0.4903734401" green="0.88796629579999997" blue="0.33133909049999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aze-Bl-Vwp">
+                                <rect key="frame" x="16" y="221" width="343" height="225"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Foody">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="95" name="ArialRoundedMTBold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.89545958048756613" green="1" blue="0.8082529854238778" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.28561415540000001" green="0.38436321649999999" blue="0.27773043510000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="aze-Bl-Vwp" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="CGO-N7-kU7"/>
-                            <constraint firstItem="aze-Bl-Vwp" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="249" id="HDi-Mm-UhT"/>
+                            <constraint firstItem="aze-Bl-Vwp" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="201" id="HDi-Mm-UhT"/>
                             <constraint firstItem="aze-Bl-Vwp" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="oWU-eg-4oW"/>
                             <constraint firstItem="aze-Bl-Vwp" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="pNt-zL-eFk"/>
                         </constraints>

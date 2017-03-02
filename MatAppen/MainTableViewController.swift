@@ -128,7 +128,6 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
             if let favs = defaults.array(forKey: "favorites"){
                 
                 favData = favs[indexPath.row] as! Dictionary<String,Any>
-                
                 name = (favData["name"] as! String)
                 id = (favData["id"] as! Int)
                 kcal = favData["kcal"] as! Int
@@ -142,9 +141,6 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
                 print(kcal)
                 print(fat)
                 favFood.append(Food(name: name, id: id, kcal: kcal, protein: protein, fat: fat, carbs: carbs, healthiness: healthiness))
-                
-                
-                
             }
         }
         return cell
@@ -162,7 +158,6 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
             healthiness = favFood[indexPath.row].healthiness
             loadValues = true
             performSegue(withIdentifier: "detail", sender: nil)
-            
             
         } else {
             name = data[indexPath.row].name
@@ -196,5 +191,4 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
         }
         return true
     }
-
 }

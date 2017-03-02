@@ -12,9 +12,17 @@ class ViewController: UIViewController {
     let defaults = UserDefaults.standard
     var favView = false
     
+    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var favButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchButton.layer.cornerRadius = 5
+        searchButton.layer.borderWidth = 2
+        searchButton.layer.borderColor = UIColor.white.cgColor
         
+        favButton.layer.cornerRadius = 5
+        favButton.layer.borderWidth = 2
+        favButton.layer.borderColor = UIColor.white.cgColor
     }
     
     @IBAction func goToFavsView(_ sender: UIButton) {
