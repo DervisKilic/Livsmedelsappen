@@ -8,18 +8,10 @@
 
 import UIKit
 
-class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {    
+class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    
 
-    @IBOutlet weak var batImage1: UIImageView!
-    @IBOutlet weak var batImage2: UIImageView!
-    @IBOutlet weak var batImage3: UIImageView!
-    @IBOutlet weak var batImage4: UIImageView!
-    @IBOutlet weak var batImage5: UIImageView!
-    @IBOutlet weak var bat1: NSLayoutConstraint!
-    @IBOutlet weak var bat2: NSLayoutConstraint!
-    @IBOutlet weak var bat3: NSLayoutConstraint!
-    @IBOutlet weak var bat4: NSLayoutConstraint!
-    @IBOutlet weak var bat5: NSLayoutConstraint!
+    
     @IBOutlet weak var compareButton: UIButton!
     
     
@@ -178,32 +170,6 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         if switchRead {
             switchState.isOn = true
             
-        }
-        
-        switch healthiness {
-        case 0...20:
-            batImage1.isHidden = false
-        case 0...100:
-            batImage1.isHidden = false
-            batImage2.isHidden = false
-        case 0...200:
-            batImage1.isHidden = false
-            batImage2.isHidden = false
-            batImage3.isHidden = false
-        case 0...300:
-            batImage1.isHidden = false
-            batImage2.isHidden = false
-            batImage3.isHidden = false
-            batImage4.isHidden = false
-        case 0...9999:
-            batImage1.isHidden = false
-            batImage2.isHidden = false
-            batImage3.isHidden = false
-            batImage4.isHidden = false
-            batImage5.isHidden = false
-            
-        default:
-            batImage1.isHidden = false
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
