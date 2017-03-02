@@ -12,22 +12,19 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     
 
     
+    @IBOutlet weak var apple5: UIImageView!
+    @IBOutlet weak var apple4: UIImageView!
+    @IBOutlet weak var apple3: UIImageView!
+    @IBOutlet weak var apple2: UIImageView!
+    @IBOutlet weak var apple1: UIImageView!
     @IBOutlet weak var compareButton: UIButton!
-    
-    
-    
     @IBOutlet weak var foodImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    
     @IBOutlet weak var fatLabel: UILabel!
     @IBOutlet weak var carbsLabel: UILabel!
     @IBOutlet weak var proteinLabel: UILabel!
-    
     @IBOutlet weak var switchState: UISwitch!
 
-    
-    
-    
     var name : String = ""
     var id : Int = 0
     var carbs : Double = 0.0
