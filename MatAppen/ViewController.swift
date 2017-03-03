@@ -9,11 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var appleTree: UIImageView!
+    @IBOutlet weak var apple: UIImageView!
     let defaults = UserDefaults.standard
     var favView = false
     
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var favButton: UIButton!
+    
+    var gravity: UIGravityBehavior!
+    var animator: UIDynamicAnimator!
+    var collision: UICollisionBehavior!
+    
+    var falingApples: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         searchButton.layer.cornerRadius = 5
@@ -23,7 +31,25 @@ class ViewController: UIViewController {
         favButton.layer.cornerRadius = 5
         favButton.layer.borderWidth = 2
         favButton.layer.borderColor = UIColor.white.cgColor
+        
+
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+
+            
+            
+            falingApples = apple
+            view.addSubview(falingApples)
+            
+            animator = UIDynamicAnimator(referenceView: view)
+            gravity = UIGravityBehavior(items: [falingApples])
+            animator.addBehavior(gravity)
+            
+            collision = UICollisionBehavior(items: [falingApples])
+            collision.translatesReferenceBoundsIntoBoundary = true
+            animator.addBehavior(collision)
+        }
     
     @IBAction func goToFavsView(_ sender: UIButton) {
         favView = true
