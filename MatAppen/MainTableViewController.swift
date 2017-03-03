@@ -136,7 +136,7 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
                 protein = favData["protein"] as! Double
                 healthiness = favData["healthiness"] as! Double
                 cell.name.text = name
-                cell.kcal.text = String(kcal)
+                cell.kcal.text = String("\(kcal) kcal")
                 print(name)
                 print(kcal)
                 print(fat)
