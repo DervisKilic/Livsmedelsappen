@@ -51,6 +51,9 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating, U
         self.tableView.reloadData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
 
         if let searchText = searchController.searchBar.text?.lowercased() {

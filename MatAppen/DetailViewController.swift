@@ -10,6 +10,11 @@ import UIKit
 
 class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
+    @IBOutlet weak var app1: UIImageView!
+    @IBOutlet weak var app2: UIImageView!
+    @IBOutlet weak var app3: UIImageView!
+    @IBOutlet weak var app4: UIImageView!
+    @IBOutlet weak var app5: UIImageView!
     @IBOutlet weak var apple5: NSLayoutConstraint!
     @IBOutlet weak var apple4: NSLayoutConstraint!
     @IBOutlet weak var apple3: NSLayoutConstraint!
@@ -37,6 +42,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     let defaults = UserDefaults.standard
     var compare = false
     var runOnce = true
+    var test = UIView()
     
     var imagePath: String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -54,18 +60,48 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         compareButton.layer.borderWidth = 2
         compareButton.layer.borderColor = UIColor.white.cgColor
         switchState.onTintColor = UIColor(red: 0.56, green: 0.71, blue: 0.54, alpha: 1.0)
-
         setData()
+        
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         apple1.constant -= view.bounds.height
         apple2.constant -= view.bounds.height
         apple3.constant -= view.bounds.height
         apple4.constant -= view.bounds.height
         apple5.constant -= view.bounds.height
         
+        switch healthiness {
+        case 50...150:
+            
+            app3.isHidden = true
+            app4.isHidden = true
+            app5.isHidden = true
+            
+        case 50...300:
+            app4.isHidden = true
+            app5.isHidden = true
+            
+        case 50...500:
+           app5.isHidden = true
+            
+        case 50...9999:
+            app5.isHidden = false
+
+        default:
+            app2.isHidden = true
+            app3.isHidden = true
+            app4.isHidden = true
+            app5.isHidden = true
+        }
+        
+        super.viewWillAppear(animated)
+    
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,10 +114,8 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
             UIView.animate(withDuration: d, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: {
                 appl!.constant += self.view.bounds.height
                 self.view.layoutIfNeeded()
-                
             }, completion: nil)
         }
- 
     }
     
     @IBAction func favorite(_ sender: UISwitch) {
