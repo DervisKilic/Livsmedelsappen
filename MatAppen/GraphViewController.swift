@@ -10,8 +10,12 @@ import UIKit
 import GraphKit
 
 class GraphViewController: UIViewController {
-    @IBOutlet weak var name1Label: UILabel!
     
+    
+    
+    @IBOutlet weak var graphView: UIView!
+    
+    @IBOutlet weak var name1Label: UILabel!
     @IBOutlet weak var name2Label: UILabel!
     var name = ""
     var name2 = ""
@@ -32,15 +36,15 @@ class GraphViewController: UIViewController {
         let g1 = GraphHelper(values: values1)
         let g2 = GraphHelper(values: values2)
         
-        graph = GKBarGraph(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300))
-        graph .dataSource = g1
+        graph = GKBarGraph(frame: CGRect(x: view.center.x, y:view.frame.height/2.1 , width: view.frame.minX, height: view.frame.minY))
+        graph.dataSource = g1
         
         graph.barWidth = 60
+       
+        graph2 = GKBarGraph(frame: CGRect(x: view.center.x, y:view.frame.height/1.1 , width: view.frame.minX, height: view.frame.minY))
+        graph2.dataSource = g2
         
-        graph2 = GKBarGraph(frame: CGRect(x: 0, y: 300, width: self.view.frame.width, height: 300))
-        graph2 .dataSource = g2
-        
-        graph2 .barWidth = 60
+        graph2.barWidth = 60
         
         
         view.addSubview(graph)

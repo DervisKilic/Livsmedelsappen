@@ -53,7 +53,6 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(id)
         compareButton.layer.cornerRadius = 5
         compareButton.layer.borderWidth = 2
         compareButton.layer.borderColor = UIColor.white.cgColor
@@ -78,7 +77,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         let apples = [apple1, apple2, apple3, apple4, apple5]
         
         for (index,appl) in apples.enumerated() {
-            let d = 1.0 + Double(index)
+            let d = 0.5 + Double(index)
             UIView.animate(withDuration: d, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: {
                 appl!.constant += self.view.bounds.height
                 self.view.layoutIfNeeded()
@@ -91,7 +90,6 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     override func viewWillDisappear(_ animated: Bool) {
         UserDefaults.standard.set(switchRead, forKey: id.description)
         UserDefaults.standard.synchronize()
-        
     }
     
     @IBAction func favorite(_ sender: UISwitch) {
@@ -163,7 +161,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         if let image = UIImage(contentsOfFile: imagePath){
             foodImage.image = image
         }else {
-            NSLog("Failed to load image from imagepath: \(imagePath)")
+            //NSLog("Failed to load image from imagepath: \(imagePath)")
         }
         self.carbsLabel.text = "\(carbs)"
         self.proteinLabel.text = "\(protein)"

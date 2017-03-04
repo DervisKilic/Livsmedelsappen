@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainTableViewController: UITableViewController, UISearchResultsUpdating {
+class MainTableViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate {
     
     var searchController : UISearchController!
     
@@ -47,7 +47,7 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
     
@@ -137,9 +137,6 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
                 healthiness = favData["healthiness"] as! Double
                 cell.name.text = name
                 cell.kcal.text = String("\(kcal) kcal")
-                print(name)
-                print(kcal)
-                print(fat)
                 favFood.append(Food(name: name, id: id, kcal: kcal, protein: protein, fat: fat, carbs: carbs, healthiness: healthiness))
             }
         }
@@ -191,4 +188,6 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating {
         }
         return true
     }
+    
+    
 }

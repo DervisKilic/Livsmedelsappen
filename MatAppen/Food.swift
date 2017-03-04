@@ -40,12 +40,10 @@ class Food {
                 favs = ["name": name,"id": id,"kcal": kcal,"protein": protein, "fat": fat, "carbs": carbs, "healthiness": healthiness]
                 
                 favArray.append(favs)
-                print(favArray.count) 
 
             } else {
             
                 favArray = favArray.filter { ($0["id"] as! Int) != (id)}
-                print(favArray.count)
             }
         }
         

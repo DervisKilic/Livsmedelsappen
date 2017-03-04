@@ -37,19 +37,31 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
 
-            
-            
-            falingApples = apple
-            view.addSubview(falingApples)
-            
-            animator = UIDynamicAnimator(referenceView: view)
-            gravity = UIGravityBehavior(items: [falingApples])
-            animator.addBehavior(gravity)
-            
-            collision = UICollisionBehavior(items: [falingApples])
-            collision.translatesReferenceBoundsIntoBoundary = true
-            animator.addBehavior(collision)
+        falingApples = apple
+        view.addSubview(falingApples)
+        
+        animator = UIDynamicAnimator(referenceView: view)
+        gravity = UIGravityBehavior(items: [falingApples])
+        
+        
+        
         }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        falingApples = apple
+        view.addSubview(falingApples)
+        
+        animator = UIDynamicAnimator(referenceView: view)
+        gravity = UIGravityBehavior(items: [falingApples])
+        animator.addBehavior(gravity)
+        
+        collision = UICollisionBehavior(items: [falingApples])
+        
+        collision.setTranslatesReferenceBoundsIntoBoundary(with: UIEdgeInsets(top: 0.0, left: 10.0, bottom: 160.0, right: 0.0))
+        
+        
+        animator.addBehavior(collision)
+    }
     
     @IBAction func goToFavsView(_ sender: UIButton) {
         favView = true
