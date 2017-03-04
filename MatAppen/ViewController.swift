@@ -31,6 +31,7 @@ class ViewController: UIViewController {
         favButton.layer.cornerRadius = 5
         favButton.layer.borderWidth = 2
         favButton.layer.borderColor = UIColor.white.cgColor
+        print("hej")
         
 
     }
