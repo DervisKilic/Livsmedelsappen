@@ -10,9 +10,6 @@ import UIKit
 
 class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
-
-    
-    
     @IBOutlet weak var apple5: NSLayoutConstraint!
     @IBOutlet weak var apple4: NSLayoutConstraint!
     @IBOutlet weak var apple3: NSLayoutConstraint!
@@ -39,7 +36,6 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     var healthiness: Double = 0.0
     let defaults = UserDefaults.standard
     var compare = false
-    var switchRead = false
     var runOnce = true
     
     var imagePath: String {
@@ -51,6 +47,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         compareButton.layer.cornerRadius = 5
@@ -87,11 +84,6 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
  
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        UserDefaults.standard.set(switchRead, forKey: id.description)
-        UserDefaults.standard.synchronize()
-    }
-    
     @IBAction func favorite(_ sender: UISwitch) {
         
         if sender.isOn{
@@ -104,16 +96,14 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
                 UserDefaults.standard.set(runOnce, forKey: "run")
                 UserDefaults.standard.synchronize()
             }
-
-            switchRead = true
-        }else{
             
+        }else{
             switchState.isOn = false
             
             self.f1.isFavorite(name: self.name, id: self.id, kcal: self.kcal, protein: self.protein, fat: self.fat, carbs: self.carbs, healthiness: self.healthiness, isFav: false)
-            
-            switchRead = false
         }
+        UserDefaults.standard.set(switchState.isOn, forKey: id.description)
+        UserDefaults.standard.synchronize()
     }
     
     @IBAction func addImg(_ sender: Any) {
@@ -167,12 +157,8 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         self.proteinLabel.text = "\(protein)"
         self.fatLabel.text = "\(fat)"
 
-        switchRead = defaults.bool(forKey: id.description)
+        switchState.isOn = defaults.bool(forKey: id.description)
         
-        if switchRead {
-            switchState.isOn = true
-            
-        }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

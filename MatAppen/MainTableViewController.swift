@@ -179,6 +179,7 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating, U
             detailView.fat = fat
             detailView.protein = protein
             detailView.healthiness = healthiness
+            favFood = []
             loadValues = false
         
     }
