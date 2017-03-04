@@ -36,7 +36,7 @@ class GraphViewController: UIViewController {
         let g1 = GraphHelper(values: values1)
         let g2 = GraphHelper(values: values2)
         
-        graph = GKBarGraph(frame: CGRect(x: view.center.x, y:view.frame.height/2.1 , width: view.frame.minX, height: view.frame.minY))
+        graph = GKBarGraph(frame: CGRect(x: view.center.x, y:view.frame.height/2 , width: view.frame.minX, height: view.frame.minY))
         graph.dataSource = g1
         
         graph.barWidth = 60
