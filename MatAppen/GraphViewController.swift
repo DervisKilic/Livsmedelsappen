@@ -10,22 +10,20 @@ import UIKit
 import GraphKit
 
 class GraphViewController: UIViewController {
-    
-    
-    
+
     @IBOutlet weak var graphView: UIView!
-    
     @IBOutlet weak var name1Label: UILabel!
     @IBOutlet weak var name2Label: UILabel!
+    
     var name = ""
     var name2 = ""
-
+    
     var values1: [String] = []
     var values2: [String] = []
     
     var graph : GKBarGraph!
     var graph2 : GKBarGraph!
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +38,7 @@ class GraphViewController: UIViewController {
         graph.dataSource = g1
         
         graph.barWidth = 60
-       
+        
         graph2 = GKBarGraph(frame: CGRect(x: view.center.x, y:view.frame.height/1.1 , width: view.frame.minX, height: view.frame.minY))
         graph2.dataSource = g2
         
@@ -52,6 +50,6 @@ class GraphViewController: UIViewController {
         
         graph.draw()
         graph2.draw()
-
+        
     }
 }

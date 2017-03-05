@@ -27,7 +27,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var carbsLabel: UILabel!
     @IBOutlet weak var proteinLabel: UILabel!
     @IBOutlet weak var switchState: UISwitch!
-
+    
     var name : String = ""
     var id : Int = 0
     var carbs : Double = 0.0
@@ -43,7 +43,6 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     var compare = false
     var runOnce = true
     var test = UIView()
-    
     var imagePath: String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         if let documentsDirectory = paths.first{
@@ -51,7 +50,6 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         }else {
             fatalError("Found no documents directory")
         }
-        
     }
     
     override func viewDidLoad() {
@@ -61,15 +59,10 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         compareButton.layer.borderColor = UIColor.white.cgColor
         switchState.onTintColor = UIColor(red: 0.56, green: 0.71, blue: 0.54, alpha: 1.0)
         setData()
-        
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         apple1.constant -= view.bounds.height
         apple2.constant -= view.bounds.height
         apple3.constant -= view.bounds.height
@@ -78,7 +71,6 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         
         switch healthiness {
         case 50...150:
-            
             app3.isHidden = true
             app4.isHidden = true
             app5.isHidden = true
@@ -88,11 +80,11 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
             app5.isHidden = true
             
         case 50...500:
-           app5.isHidden = true
+            app5.isHidden = true
             
         case 50...9999:
             app5.isHidden = false
-
+            
         default:
             app2.isHidden = true
             app3.isHidden = true
@@ -101,7 +93,6 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         
         super.viewWillAppear(animated)
-    
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -125,7 +116,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
             self.f1.isFavorite(name: self.name, id: self.id, kcal: self.kcal, protein: self.protein, fat: self.fat, carbs: self.carbs, healthiness: self.healthiness, isFav: true)
             
             if !runOnce{
-            self.f1.isFavorite(name: self.name, id: self.id, kcal: self.kcal, protein: self.protein, fat: self.fat, carbs: self.carbs, healthiness: self.healthiness, isFav: true)
+                self.f1.isFavorite(name: self.name, id: self.id, kcal: self.kcal, protein: self.protein, fat: self.fat, carbs: self.carbs, healthiness: self.healthiness, isFav: true)
                 runOnce = true
                 UserDefaults.standard.set(runOnce, forKey: "run")
                 UserDefaults.standard.synchronize()
@@ -153,9 +144,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         else{
             fatalError("No type")
         }
-        
         present(picker,animated: true, completion: nil)
-
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -179,6 +168,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     func setData(){
+        
         compare = defaults.bool(forKey: "compare")
         nameLabel.text = name
         runOnce = defaults.bool(forKey: "run")
@@ -190,33 +180,34 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         self.carbsLabel.text = "\(carbs)"
         self.proteinLabel.text = "\(protein)"
         self.fatLabel.text = "\(fat)"
-
+        
         switchState.isOn = defaults.bool(forKey: id.description)
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-            if segue.identifier == "s1" {
-                if segue.destination is MainTableViewController {
-                    
-                    let savedValues1 = [name,String(carbs),String(fat),String(protein)]
-                    UserDefaults.standard.set(savedValues1, forKey: "values1")
-                    UserDefaults.standard.synchronize()
-                }
-            }
-            else if segue.identifier == "s2" {
+        if segue.identifier == "s1" {
+            if segue.destination is MainTableViewController {
                 
-                if let graphView = segue.destination as? GraphViewController {
-                    let savedValues2 = [name,String(carbs),String(fat),String(protein)]
-                    
-                    UserDefaults.standard.set(savedValues2, forKey: "values2")
-                    UserDefaults.standard.synchronize()
-
-                    graphView.values1 = defaults.array(forKey: "values1") as! [String]
-                    graphView.values2 = defaults.array(forKey: "values2") as! [String]
+                let savedValues1 = [name,String(carbs),String(fat),String(protein)]
+                UserDefaults.standard.set(savedValues1, forKey: "values1")
+                UserDefaults.standard.synchronize()
+            }
+        }
+        else if segue.identifier == "s2" {
+            
+            if let graphView = segue.destination as? GraphViewController {
+                let savedValues2 = [name,String(carbs),String(fat),String(protein)]
+                
+                UserDefaults.standard.set(savedValues2, forKey: "values2")
+                UserDefaults.standard.synchronize()
+                
+                graphView.values1 = defaults.array(forKey: "values1") as! [String]
+                graphView.values2 = defaults.array(forKey: "values2") as! [String]
             }
         }
     }
+    
     @IBAction func compareButton(_ sender: UIButton) {
         
         if !compare{
@@ -224,7 +215,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
             compare = true
             UserDefaults.standard.set(compare, forKey: "compare")
             UserDefaults.standard.synchronize()
-
+            
         }else{
             performSegue(withIdentifier: "s2", sender: nil)
             compare = false

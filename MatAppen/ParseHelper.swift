@@ -80,9 +80,7 @@ class ParseHelper {
                             let carbs = item["carbohydrates"] as! Double
                             let kcal = item["energyKcal"] as! Int
                             healthiness = (protein + carbs) * fat
-                                
 
-                            
                             food.append(Food(kcal: kcal, protein: protein, fat: fat, carbs: carbs, healthiness: healthiness))
     
                             nuts(food)
@@ -106,5 +104,4 @@ class ParseHelper {
             NSLog("Failed to create url.")
         }
     }
-    
 }

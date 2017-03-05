@@ -37,7 +37,7 @@ class GraphHelper: NSObject, GKBarGraphDataSource {
     }
     
     public func titleForBar(at index: Int) -> String! {
-
+        
         return ["carbs", "fat", "prot"][index]
     }
 }

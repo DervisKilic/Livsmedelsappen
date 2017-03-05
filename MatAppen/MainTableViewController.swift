@@ -57,7 +57,6 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating, U
     func updateSearchResults(for searchController: UISearchController) {
 
         if let searchText = searchController.searchBar.text?.lowercased() {
-            
             if searchText.characters.count > 2 {
             data = data.filter { $0.name.lowercased().contains(searchText) }
                 p1.parseJson(searchWord: searchText) {
@@ -95,16 +94,15 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating, U
             return false
         } else {
             return searchController.isActive && !(searchController.searchBar.text ?? "").isEmpty
-
         }
     }
-
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection: Int) -> Int {
+        
         if showFavView{
             if let count = defaults.array(forKey: "favorites")?.count{
                 return count
@@ -169,7 +167,6 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating, U
             healthiness = data[indexPath.row].healthiness
             performSegue(withIdentifier: "detail", sender: nil)
         }
-
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -187,11 +184,10 @@ class MainTableViewController: UITableViewController, UISearchResultsUpdating, U
         
     }
     override func shouldPerformSegue(withIdentifier identifier: String,sender: Any?) -> Bool {
+        
         if !loadValues{
             return false
         }
         return true
     }
-    
-    
 }
