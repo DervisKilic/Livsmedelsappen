@@ -9,12 +9,9 @@
 import UIKit
 
 class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+
     
-    @IBOutlet weak var app1: UIImageView!
-    @IBOutlet weak var app2: UIImageView!
-    @IBOutlet weak var app3: UIImageView!
-    @IBOutlet weak var app4: UIImageView!
-    @IBOutlet weak var app5: UIImageView!
+    @IBOutlet weak var appleView: UIView!
     @IBOutlet weak var apple5: NSLayoutConstraint!
     @IBOutlet weak var apple4: NSLayoutConstraint!
     @IBOutlet weak var apple3: NSLayoutConstraint!
@@ -61,42 +58,47 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         setData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        appleView.isHidden = true
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
-        
-        apple1.constant -= view.bounds.height
-        apple2.constant -= view.bounds.height
-        apple3.constant -= view.bounds.height
-        apple4.constant -= view.bounds.height
-        apple5.constant -= view.bounds.height
+        appleView.isHidden = false
+
         
         switch healthiness {
         case 50...150:
-            app3.isHidden = true
-            app4.isHidden = true
-            app5.isHidden = true
+            apple1.constant -= view.bounds.height
+            apple2.constant -= view.bounds.height
             
         case 50...300:
-            app4.isHidden = true
-            app5.isHidden = true
+            apple1.constant -= view.bounds.height
+            apple2.constant -= view.bounds.height
+            apple3.constant -= view.bounds.height
             
         case 50...500:
-            app5.isHidden = true
+            apple1.constant -= view.bounds.height
+            apple2.constant -= view.bounds.height
+            apple3.constant -= view.bounds.height
+            apple4.constant -= view.bounds.height
             
         case 50...9999:
-            app5.isHidden = false
+            apple1.constant -= view.bounds.height
+            apple2.constant -= view.bounds.height
+            apple3.constant -= view.bounds.height
+            apple4.constant -= view.bounds.height
+            apple5.constant -= view.bounds.height
             
         default:
-            app2.isHidden = true
-            app3.isHidden = true
-            app4.isHidden = true
-            app5.isHidden = true
+            apple1.constant -= view.bounds.height
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        appleView.isHidden = false
         
         let apples = [apple1, apple2, apple3, apple4, apple5]
         
@@ -108,15 +110,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
             }, completion: nil)
         }
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        
-        app1.isHidden = true
-        app2.isHidden = true
-        app3.isHidden = true
-        app4.isHidden = true
-        app5.isHidden = true
-    }
+
     
     @IBAction func favorite(_ sender: UISwitch) {
         
