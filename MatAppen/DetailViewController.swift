@@ -63,10 +63,9 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        appleView.isHidden = true
         
         super.viewWillAppear(animated)
-        appleView.isHidden = false
-
         
         switch healthiness {
         case 50...150:
@@ -98,13 +97,14 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        appleView.isHidden = false
-        
+
+        self.appleView.isHidden = false
+
         let apples = [apple1, apple2, apple3, apple4, apple5]
         
         for (index,apple) in apples.enumerated() {
             let duration = 0.5 + Double(index)
-            UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: {
+            UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
                 apple!.constant += self.view.bounds.height
                 self.view.layoutIfNeeded()
             }, completion: nil)
@@ -172,6 +172,7 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func setData(){
         
+
         compare = defaults.bool(forKey: "compare")
         nameLabel.text = name
         runOnce = defaults.bool(forKey: "run")
