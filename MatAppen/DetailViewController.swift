@@ -100,10 +100,10 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
         
         let apples = [apple1, apple2, apple3, apple4, apple5]
         
-        for (index,appl) in apples.enumerated() {
-            let d = 0.5 + Double(index)
-            UIView.animate(withDuration: d, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: {
-                appl!.constant += self.view.bounds.height
+        for (index,apple) in apples.enumerated() {
+            let duration = 0.5 + Double(index)
+            UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: {
+                apple!.constant += self.view.bounds.height
                 self.view.layoutIfNeeded()
             }, completion: nil)
         }
