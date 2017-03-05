@@ -63,6 +63,8 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
     
     override func viewWillAppear(_ animated: Bool) {
         
+        super.viewWillAppear(animated)
+        
         apple1.constant -= view.bounds.height
         apple2.constant -= view.bounds.height
         apple3.constant -= view.bounds.height
@@ -91,8 +93,6 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
             app4.isHidden = true
             app5.isHidden = true
         }
-        
-        super.viewWillAppear(animated)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -107,6 +107,15 @@ class DetailedViewController: UIViewController, UIImagePickerControllerDelegate,
                 self.view.layoutIfNeeded()
             }, completion: nil)
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        app1.isHidden = true
+        app2.isHidden = true
+        app3.isHidden = true
+        app4.isHidden = true
+        app5.isHidden = true
     }
     
     @IBAction func favorite(_ sender: UISwitch) {
