@@ -37,7 +37,7 @@ class Food {
             
             if isFav {
                 
-                favs = ["name": name,"id": id,"kcal": kcal,"protein": protein, "fat": fat, "carbs": carbs, "healthiness": healthiness]
+                favs = ["name": name,"link": id,"logo": kcal,"protein": protein, "fat": fat, "carbs": carbs, "healthiness": healthiness]
                 
                 favArray.append(favs)
                 
